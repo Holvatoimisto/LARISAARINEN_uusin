@@ -11,10 +11,8 @@ import { cn } from "@/lib/utils";
  *
  * Kompaktius: media max 400 px leveä, 4:3-rajaus desktopilla
  * (16:10 mobiilissa), copy 2–4 riviä, riviväli 56 px.
- * Kuutta eri aihekohtaista valokuvaa ei ole ilman toistoa muualla
- * sivustolla (kohtekuvat ovat ListingsTeaserissa, lari-hero MiksiLarissa),
- * joten finaalivaihe 06 käyttää hillittyä navy-ghost-paneelia — yhdessä
- * navy-noden kanssa se viestii finaalin hienovaraisesti.
+ * Finaalivaiheen 06 kättelykuva vahvistaa visuaalisesti kaupanteon,
+ * luottamuksen ja henkilökohtaisen jälkiseurannan teemaa.
  * Vaiheen 03 median paikalla on kanavapaneeli: kuusi
  * markkinointikanavan logo-assetsia 3×2-gridissä reunasta
  * reunaan, ei nimitekstejä.
@@ -45,7 +43,11 @@ const stepVisuals: StepVisual[] = [
     // jotta kasvot ja puhelin pysyvät näkyvissä.
     pos: "object-[center_15%]",
   },
-  { kind: "panel", tone: "navy" },
+  {
+    kind: "image",
+    src: "/assets/kaupanteko-kattely.webp",
+    alt: "Onnistuneen asuntokaupan osapuolet kättelevät",
+  },
 ];
 
 /**
@@ -133,7 +135,7 @@ export default function Process() {
                   </p>
                 </div>
 
-                {/* Mediapuoli — kuva, kanavapaneeli tai hillitty ghost-paneeli */}
+                {/* Mediapuoli — kuva tai kanavapaneeli */}
                 <div
                   className={cn(
                     "ml-14 mt-5 w-full md:ml-0 md:mt-0 md:max-w-[320px] lg:max-w-[400px]",
