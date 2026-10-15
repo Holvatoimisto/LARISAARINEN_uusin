@@ -49,19 +49,27 @@ export default function Hero() {
       <div className="container-site relative flex flex-col justify-end pb-12 pt-24 sm:min-h-screen sm:min-h-svh sm:justify-center sm:pb-16">
         <div className="max-w-[37.5rem]">
           <p className="eyebrow-dark">
-            {site.name} · {site.title}, pääkaupunkiseutu
+            <span className="sm:hidden">{site.name} · Asuntojen myynti</span>
+            <span className="hidden sm:inline">
+              {site.name} · {site.title}, pääkaupunkiseutu
+            </span>
           </p>
           <h1
             id="hero-h1"
-            className="mt-4 text-balance font-display text-[2.05rem] font-bold leading-[1.1] text-white sm:text-5xl sm:leading-[1.08] lg:text-[3.6rem]"
+            className="mt-4 text-balance font-display text-[1.875rem] font-bold leading-[1.05] text-white sm:text-5xl sm:leading-[1.08] lg:text-[3.6rem]"
           >
             Kotisi myynti ansaitsee suunnitelman, joka on tehty juuri sille.
           </h1>
-          <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/90 sm:text-lg">
-            Henkilökohtaista ja aktiivista asuntojen myyntiä pääkaupunkiseudulla.
-            Pidän sinut ajan tasalla näytöistä kauppoihin asti.
+          <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-white/90 sm:mt-5 sm:text-lg">
+            <span className="sm:hidden">
+              Henkilökohtaista ja aktiivista asuntomyyntiä pääkaupunkiseudulla.
+            </span>
+            <span className="hidden sm:inline">
+              Henkilökohtaista ja aktiivista asuntojen myyntiä pääkaupunkiseudulla.
+              Pidän sinut ajan tasalla näytöistä kauppoihin asti.
+            </span>
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
             <Link
               to="/ota-yhteytta"
               onClick={() => trackEvent("hero_cta_click", { location: "hero" })}
@@ -69,17 +77,27 @@ export default function Hero() {
             >
               Varaa maksuton arviokäynti
             </Link>
+            {/* Mobiili: kevyt tekstilinkki, ei isoa ghost-nappia */}
             <a
               href={site.phoneHref}
               onClick={() => trackEvent("phone_click", { location: "hero" })}
-              className="btn-ghost-light"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 underline-offset-4 transition-colors hover:text-white hover:underline sm:hidden"
+            >
+              <Phone className="h-4 w-4" aria-hidden /> Soita Larille: {site.phone}
+            </a>
+            {/* sm+: alkuperäinen ghost-nappi */}
+            <a
+              href={site.phoneHref}
+              onClick={() => trackEvent("phone_click", { location: "hero" })}
+              className="btn-ghost-light hidden sm:inline-flex"
             >
               <Phone className="h-5 w-5" aria-hidden /> Soita Larille: {site.phone}
             </a>
           </div>
 
-          {/* Kompakti luottamusrivi */}
-          <div className="mt-6 flex flex-col gap-2 text-[0.95rem] sm:flex-row sm:items-center sm:gap-0">
+          {/* Kompakti luottamusrivi — mobiilissa tiivis kaksi riviä,
+              desktopilla alkuperäinen vaakarivi */}
+          <div className="mt-5 flex flex-col gap-1 text-sm sm:mt-6 sm:flex-row sm:items-center sm:gap-0 sm:text-[0.95rem]">
             <div className="flex items-center gap-2 text-white">
               <span className="flex items-center gap-0.5" aria-hidden="true">
                 {[...Array(5)].map((_, i) => (
@@ -99,7 +117,10 @@ export default function Hero() {
             />
             <div className="text-white">
               <span className="font-medium">{site.experienceYears}+ vuotta</span>
-              <span className="text-white/70"> kokemusta asuntomyynnistä</span>
+              <span className="text-white/70">
+                {" "}
+                kokemusta<span className="hidden sm:inline"> asuntomyynnistä</span>
+              </span>
             </div>
           </div>
         </div>
