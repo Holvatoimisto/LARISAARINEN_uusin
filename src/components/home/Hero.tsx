@@ -44,9 +44,10 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[hsl(210_48%_9%/0.85)] to-transparent sm:h-32 sm:from-[hsl(210_48%_9%/0.35)]" aria-hidden />
       </div>
 
-      {/* Desktop: hero täyttää koko ensimmäisen viewportin (header overlay).
-          Mobiili: sisältö määrää korkeuden, ei pakotusta. */}
-      <div className="container-site relative flex flex-col justify-end pb-12 pt-24 sm:min-h-screen sm:min-h-svh sm:justify-center sm:pb-16">
+      {/* Hero täyttää koko ensimmäisen viewportin (header overlay-kiinteä).
+          Mobiili: 100svh + dvh-korjaus, sisältö pystykeskitettynä,
+          safe-area-varaus alareunaan (iOS Safari). Desktop ennallaan. */}
+      <div className="container-site relative flex min-h-[100svh] flex-col justify-center pb-[max(4rem,env(safe-area-inset-bottom))] pt-24 supports-[min-height:100dvh]:min-h-[100dvh] sm:min-h-screen sm:min-h-svh sm:pb-16">
         <div className="max-w-[37.5rem]">
           <p className="eyebrow-dark">
             <span className="sm:hidden">{site.name} · Asuntojen myynti</span>
